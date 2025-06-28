@@ -1,7 +1,6 @@
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
-import { useState } from "react";
+import { useReducer, useState } from "react";
+import reducer, { ADICIONAR_FRASE } from "./reducer";
 
 const App = () => {
   // lista de frases (estado)
@@ -11,20 +10,16 @@ const App = () => {
   // 2. A frase seja única
 
   const [frase, setFrase] = useState("");
-  const [frases, setFrases] = useState([]);
+  // const [frases, setFrases] = useState([]);
+  const [frases, dispatch] = useReducer(reducer, []);
 
   const salvarFrase = (e) => {
     e.preventDefault();
-    if (frase.length < 20) {
-      alert("Ops... Não são permitidas frases com menos de 20 caracteres.");
-      return;
-    }
-
-    if (frases.includes(frase)) {
-      alert("Não são permitidas frases duplicadas.");
-      return;
-    }
-    setFrases([...frases, frase]);
+    dispatch({
+      tipo: ADICIONAR_FRASE,
+      frase: frase,
+    });
+    // setFrases([...frases, frase]);
   };
 
   return (
