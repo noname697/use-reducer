@@ -11,13 +11,20 @@ const App = () => {
   // 2. A frase seja única
 
   const [frase, setFrase] = useState("");
+  const [frases, setFrases] = useState([]);
 
   const salvarFrase = (e) => {
     e.preventDefault();
-    if(frase.length < 20){
+    if (frase.length < 20) {
       alert("Ops... Não são permitidas frases com menos de 20 caracteres.");
-      return
+      return;
     }
+
+    if (frases.includes(frase)) {
+      alert("Não são permitidas frases duplicadas.");
+      return;
+    }
+    setFrases([...frases, frase]);
   };
 
   return (
@@ -32,6 +39,9 @@ const App = () => {
         <br />
         <button>Salvar Frase</button>
       </form>
+      {frases.map((fraseAtual, index) => (
+        <p key={index}>{fraseAtual}</p>
+      ))}
     </>
   );
 };
