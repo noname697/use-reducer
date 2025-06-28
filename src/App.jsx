@@ -12,7 +12,13 @@ const App = () => {
 
   const [frase, setFrase] = useState("");
 
-  const salvarFrase = (e) => {};
+  const salvarFrase = (e) => {
+    e.preventDefault();
+    if(frase.length < 20){
+      alert("Ops... Não são permitidas frases com menos de 20 caracteres.");
+      return
+    }
+  };
 
   return (
     <>
@@ -20,6 +26,7 @@ const App = () => {
         <textarea
           value={frase}
           onChange={(e) => setFrase(e.target.value)}
+          placeholder="Digite sua frase..."
           required
         />
         <br />
