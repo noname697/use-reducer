@@ -1,23 +1,32 @@
-import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
+import { useState } from "react";
 
-function App() {
+const App = () => {
+  // lista de frases (estado)
+
+  // o usuario pode adicionar novas frases, desde que:
+  // 1. A frase não possua mais que 20 caracteres
+  // 2. A frase seja única
+
+  const [frase, setFrase] = useState("");
+
+  const salvarFrase = (e) => {};
+
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-
-      <p>Bem vindo ao mundo do useReducer!</p>
+      <form onSubmit={salvarFrase}>
+        <textarea
+          value={frase}
+          onChange={(e) => setFrase(e.target.value)}
+          required
+        />
+        <br />
+        <button>Salvar Frase</button>
+      </form>
     </>
   );
-}
+};
 
 export default App;
