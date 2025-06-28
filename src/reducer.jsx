@@ -7,8 +7,7 @@ const reducer = (estado, acao) => {
         alert("Ops... Não são permitidas frases com menos de 20 caracteres.");
         return estado;
       }
-
-      if (estado.frases.includes(frase)) {
+      if (estado.includes(acao.frase)) {
         alert("Não são permitidas frases duplicadas.");
         return estado;
       }
